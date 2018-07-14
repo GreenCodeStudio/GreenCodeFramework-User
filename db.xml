@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <table>
+        <name>user</name>
+        <column>
+            <name>id</name>
+            <type>int</type>
+            <null>NO</null>
+            <autoincrement>true</autoincrement>
+        </column>
+        <column>
+            <name>name</name>
+            <type>text</type>
+            <null>yes</null>
+        </column>
+        <column>
+            <name>surmane</name>
+            <type>text</type>
+            <null>yes</null>
+        </column>
+        <column>
+            <name>mail</name>
+            <type>text</type>
+            <null>yes</null>
+        </column>
+    </table>
+</root>

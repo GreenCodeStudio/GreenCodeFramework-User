@@ -2,7 +2,7 @@
     <header>
         <h1>Wszyscy użytkownicy</h1>
     </header>
-    <table class="dataTable">
+    <table class="dataTable" data-controller="User" data-method="getTable">
         <thead>
         <tr data-value="name">Imie</tr>
         <tr data-value="surname">Nazwisko</tr>
