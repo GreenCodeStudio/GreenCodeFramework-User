@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <element>
+        <title>Użytkownicy</title>
+        <menu>
+            <element>
+                <link>/User</link>
+                <title>Lista</title>
+            </element>
+        </menu>
+    </element>
+</menu>
