@@ -8,11 +8,12 @@
 
 namespace User\Ajax;
 
-
 class User extends \Core\AjaxController
 {
-    public function getTable()
+    public function getTable($options)
     {
-        return 1234;
+        dump($options);
+        $user = new \User\User();
+        return $user->getDataTable($options);
     }
 }

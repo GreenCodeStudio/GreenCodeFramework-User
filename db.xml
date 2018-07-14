@@ -14,7 +14,7 @@
             <null>yes</null>
         </column>
         <column>
-            <name>surmane</name>
+            <name>surname</name>
             <type>text</type>
             <null>yes</null>
         </column>

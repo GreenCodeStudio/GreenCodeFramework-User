@@ -4,9 +4,11 @@
     </header>
     <table class="dataTable" data-controller="User" data-method="getTable">
         <thead>
-        <tr data-value="name">Imie</tr>
-        <tr data-value="surname">Nazwisko</tr>
-        <tr data-value="mail">Email</tr>
+        <tr>
+            <th data-value="name">Imie</th>
+            <th data-value="surname">Nazwisko</th>
+            <th data-value="mail">Email</th>
+        </tr>
         </thead>
     </table>
 </section>
