@@ -12,7 +12,6 @@ class User extends \Core\AjaxController
 {
     public function getTable($options)
     {
-        dump($options);
         $user = new \User\User();
         return $user->getDataTable($options);
     }
