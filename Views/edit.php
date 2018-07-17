@@ -1,4 +1,5 @@
-<form class="dataForm" data-name="user" data-controller="User" data-method="update">
+<form class="dataForm" data-name="user" data-controller="User"
+      data-method="<?= $data['type'] == 'edit' ? 'update' : 'insert' ?>">
     <input name="id" type="hidden">
     <section class="card" data-width="6">
         <header>

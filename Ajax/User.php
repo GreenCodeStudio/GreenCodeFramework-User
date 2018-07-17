@@ -18,9 +18,13 @@ class User extends \Core\AjaxController
 
     public function update($data)
     {
-        dump($data);
-
         $userSave = new \User\UserSave();
         $userSave->update($data->id, $data);
+    }
+
+    public function insert($data)
+    {
+        $userSave = new \User\UserSave();
+        $id = $userSave->insert($data);
     }
 }

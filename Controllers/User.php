@@ -13,7 +13,7 @@ class User extends \Common\PageStandardController
 
     function edit()
     {
-        $this->addView('User', 'edit');
+        $this->addView('User', 'edit', ['type'=>'edit']);
     }
 
     function edit_data(int $id)
@@ -25,4 +25,8 @@ class User extends \Common\PageStandardController
         return ['user' => $data];
     }
 
+    function add()
+    {
+        $this->addView('User', 'edit', ['type'=>'add']);
+    }
 }

@@ -1,6 +1,7 @@
 <section class="card" data-width="6">
     <header>
         <h1>Wszyscy użytkownicy</h1>
+        <a href="/User/add" class="button">Dodaj</a>
     </header>
     <div class="dataTableContainer">
         <table class="dataTable" data-controller="User" data-method="getTable">

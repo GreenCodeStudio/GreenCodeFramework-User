@@ -17,6 +17,12 @@ class UserSave extends \Core\SaveModel
         $db = new DB\User();
         $db->update($id, $filtered);
     }
+    public function insert($data)
+    {
+        $filtered = $this->filterData($data);
+        $db = new DB\User();
+        $db->insert($filtered);
+    }
 
     protected function filterData($data)
     {
