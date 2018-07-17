@@ -2,22 +2,27 @@
 
 namespace User\Controllers;
 
-class User extends \Common\PageStandardController {
+class User extends \Common\PageStandardController
+{
 
-    function index() {
+    function index()
+    {
         $this->addView('User', 'list');
 
     }
 
-    function edit(){
+    function edit()
+    {
         $this->addView('User', 'edit');
     }
-    function edit_data(int $id){
+
+    function edit_data(int $id)
+    {
         $user = new \User\User();
-        $data=$user->getById($id);
-        if($data == null)
+        $data = $user->getById($id);
+        if ($data == null)
             throw new \Core\Exceptions\NotFoundException();
-        return ['user'=>$data];
+        return ['user' => $data];
     }
 
 }

@@ -10,9 +10,9 @@
                 <th data-value="surname">Nazwisko</th>
                 <th data-value="mail">Email</th>
                 <th class="tableActions">Akcje
-                <div class="tableCopy">
-                    <a href="/User/edit" class="button">Edytuj</a>
-                </div>
+                    <div class="tableCopy">
+                        <a href="/User/edit" class="button">Edytuj</a>
+                    </div>
                 </th>
             </tr>
             </thead>

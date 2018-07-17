@@ -22,7 +22,7 @@ class User extends \Core\ReadModel
     {
         $start = (int)$options->start;
         $limit = (int)$options->limit;
-        $rows= DB::get("SELECT * FROM user LIMIT $start,$limit");
-        return ['rows'=>$rows];
+        $rows = DB::get("SELECT * FROM user LIMIT $start,$limit");
+        return ['rows' => $rows];
     }
 }

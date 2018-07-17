@@ -15,4 +15,12 @@ class User extends \Core\AjaxController
         $user = new \User\User();
         return $user->getDataTable($options);
     }
+
+    public function update($data)
+    {
+        dump($data);
+
+        $userSave = new \User\UserSave();
+        $userSave->update($data->id, $data);
+    }
 }

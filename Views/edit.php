@@ -1,19 +1,24 @@
-<form class="dataForm" data-name="user">
+<form class="dataForm" data-name="user" data-controller="User" data-method="update">
+    <input name="id" type="hidden">
     <section class="card" data-width="6">
         <header>
             <h1>Karta tytułowa</h1>
         </header>
         <label>
-            <span>imie</span>
+            <span>Imie</span>
             <input name="name">
         </label>
         <label>
             <span>Nazwisko</span>
             <input name="surname">
         </label>
+        <label>
+            <span>Email</span>
+            <input name="mail">
+        </label>
         <footer>
-            <span class="button">Anuluj</span>
-            <span class="button">Dodaj</span>
+            <button class="button" type="button">Anuluj</button>
+            <button class="button">Zapisz</button>
         </footer>
     </section>
 </form>
