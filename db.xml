@@ -23,6 +23,16 @@
             <type>text</type>
             <null>YES</null>
         </column>
+        <column>
+            <name>password</name>
+            <type>text</type>
+            <null>YES</null>
+        </column>
+        <column>
+            <name>salt</name>
+            <type>text</type>
+            <null>YES</null>
+        </column>
         <index>
             <type>PRIMARY</type>
             <element>id</element>
