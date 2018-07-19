@@ -25,4 +25,9 @@ class User extends \Core\ReadModel
         $rows = DB::get("SELECT * FROM user LIMIT $start,$limit");
         return ['rows' => $rows];
     }
+
+    public function getByUsername(string $username)
+    {
+        return DB::get("SELECT * FROM user WHERE mail = ?", [$username])[0]??null;
+    }
 }
