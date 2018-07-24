@@ -28,6 +28,6 @@ class User extends \Core\ReadModel
 
     public function getByUsername(string $username)
     {
-        return DB::get("SELECT * FROM user WHERE mail = ?", [$username])[0]??null;
+        return DB::get("SELECT * FROM user WHERE mail = ?", [$username])[0] ?? null;
     }
 }
