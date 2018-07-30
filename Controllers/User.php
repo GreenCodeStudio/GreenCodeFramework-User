@@ -12,6 +12,10 @@ class User extends \Common\PageStandardController
 
     }
 
+    /**
+     * @param int $id
+     * @OfflineDataOnly
+     */
     function edit(int $id)
     {
         $this->addView('User', 'edit', ['type' => 'edit']);
@@ -28,6 +32,9 @@ class User extends \Common\PageStandardController
         return ['user' => $data];
     }
 
+    /**
+     * @OfflineConstant
+     */
     function add()
     {
         $this->addView('User', 'edit', ['type' => 'add']);
