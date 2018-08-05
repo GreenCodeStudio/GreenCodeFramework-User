@@ -7,6 +7,10 @@
                 <link>/User</link>
                 <title>Lista</title>
             </element>
+            <element>
+                <link>/User/add</link>
+                <title>Dodaj usera</title>
+            </element>
         </menu>
     </element>
 </menu>
