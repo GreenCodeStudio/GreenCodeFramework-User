@@ -22,12 +22,17 @@ class User extends \Core\ReadModel
     {
         $start = (int)$options->start;
         $limit = (int)$options->limit;
-        $rows = DB::get("SELECT * FROM user LIMIT $start,$limit");
+        $rows = DB::get("SELECT id,mail,name,surname FROM user LIMIT $start,$limit");
         return ['rows' => $rows];
     }
 
     public function getByUsername(string $username)
     {
-        return DB::get("SELECT * FROM user WHERE mail = ?", [$username])[0] ?? null;
+        return DB::get("SELECT id,mail,name,surname FROM user WHERE mail = ?", [$username])[0] ?? null;
+    }
+
+    public function getById(int $id)
+    {
+        return DB::get("SELECT id,mail,name,surname FROM user WHERE id = ?", [$id])[0] ?? null;
     }
 }
