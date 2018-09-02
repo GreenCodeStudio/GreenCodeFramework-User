@@ -26,9 +26,13 @@ class User extends \Core\ReadModel
         return ['rows' => $rows];
     }
 
-    public function getByUsername(string $username)
+    public function getByUsername(string $username, bool $getSecretData = false)
     {
-        return DB::get("SELECT id,mail,name,surname FROM user WHERE mail = ?", [$username])[0] ?? null;
+        if ($getSecretData)
+            $select = ", salt, password";
+        else
+            $select = "";
+        return DB::get("SELECT id,mail,name,surname $select FROM user WHERE mail = ?", [$username])[0] ?? null;
     }
 
     public function getById(int $id)
