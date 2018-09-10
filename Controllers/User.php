@@ -2,6 +2,8 @@
 
 namespace User\Controllers;
 
+use Authorization\Permissions;
+
 class User extends \Common\PageStandardController
 {
 
@@ -18,7 +20,8 @@ class User extends \Common\PageStandardController
      */
     function edit(int $id)
     {
-        $this->addView('User', 'edit', ['type' => 'edit']);
+        $permissionsStructure=Permissions::readStructure();
+        $this->addView('User', 'edit', ['type' => 'edit', 'permissionsStructure'=>$permissionsStructure]);
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
         $this->pushBreadcrumb(['title' => 'Edycja', 'url' => '/User/edit/'.$id]);
     }

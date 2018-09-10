@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions>
+    <group>
+        <name>user</name>
+        <title>Użytkownicy</title>
+        <permission>
+            <name>show</name>
+            <title>Odczyt</title>
+        </permission>
+        <permission>
+            <name>edit</name>
+            <title>Edycja</title>
+        </permission>
+    </group>
+</permissions>

@@ -35,4 +35,24 @@
             <input name="password2" type="password">
         </label>
     </section>
+
+    <section class="card" data-width="6">
+        <header>
+            <h1>Uprawnienia</h1>
+        </header>
+        <?php
+        foreach ($data['permissionsStructure'] as $permGroup) {
+            ?>
+            <h2><?= htmlspecialchars($permGroup->title) ?></h2>
+            <?php
+            foreach ($permGroup->children as $perm) {
+                ?>
+                <label><input type="checkbox"
+                              name="permission[<?= htmlspecialchars($permGroup->name) ?>][<?= htmlspecialchars($perm->name) ?>]"><?= htmlspecialchars($perm->title) ?>
+                </label>
+                <?php
+            }
+        }
+        ?>
+    </section>
 </form>
