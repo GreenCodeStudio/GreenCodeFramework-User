@@ -38,4 +38,22 @@
             <element>id</element>
         </index>
     </table>
+    <table>
+        <name>user_permission</name>
+        <column>
+            <name>id_user</name>
+            <type>int</type>
+            <null>NO</null>
+        </column>
+        <column>
+            <name>name</name>
+            <type>varchar(255)</type>
+            <null>NO</null>
+        </column>
+        <index>
+            <type>PRIMARY</type>
+            <element>id_user</element>
+            <element>name</element>
+        </index>
+    </table>
 </root>
