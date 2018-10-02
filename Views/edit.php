@@ -7,7 +7,7 @@
     <input name="id" type="hidden">
     <section class="card" data-width="6">
         <header>
-            <h1>Karta tytułowa</h1>
+            <h1>Podstawowe dane</h1>
         </header>
         <label>
             <span>Imie</span>
