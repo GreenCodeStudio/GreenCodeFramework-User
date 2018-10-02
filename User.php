@@ -42,6 +42,11 @@ class User extends \Core\ReadModel
 
     public function getPermissions(int $userId)
     {
-        $data= DB::get("SELECT * FROM user_permission up WHERE id_user = ?", [$userId]);
+        $data = DB::get("SELECT * FROM user_permission up WHERE id_user = ?", [$userId]);
+        $ret = [];
+        foreach ($data as $row) {
+            $ret[$row['group']][$row['name']] = true;
+        }
+        return $ret;
     }
 }
