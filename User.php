@@ -39,4 +39,9 @@ class User extends \Core\ReadModel
     {
         return DB::get("SELECT id,mail,name,surname FROM user WHERE id = ?", [$id])[0] ?? null;
     }
+
+    public function getPermissions(int $userId)
+    {
+        $data= DB::get("SELECT * FROM user_permission up WHERE id_user = ?", [$userId]);
+    }
 }

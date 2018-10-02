@@ -46,6 +46,11 @@
             <null>NO</null>
         </column>
         <column>
+            <name>group</name>
+            <type>varchar(255)</type>
+            <null>NO</null>
+        </column>
+        <column>
             <name>name</name>
             <type>varchar(255)</type>
             <null>NO</null>
@@ -53,6 +58,7 @@
         <index>
             <type>PRIMARY</type>
             <element>id_user</element>
+            <element>group</element>
             <element>name</element>
         </index>
     </table>

@@ -16,6 +16,7 @@ class UserSave extends \Core\SaveModel
         $filtered = $this->filterData($data);
         $db = new DB\User();
         $db->update($id, $filtered);
+        $this->savePermissions($data->permission, $id);
         if (!empty($data->password) && $data->password === $data->password2) {
             $this->changePassword($id, $data->password);
         }
@@ -44,5 +45,17 @@ class UserSave extends \Core\SaveModel
         $filtered = $this->filterData($data);
         $db = new DB\User();
         $db->insert($filtered);
+    }
+
+    private function savePermissions($permission, int $idUser)
+    {
+        $prepared=[];
+        foreach($permission as $groupName=>$group){
+            foreach ($group as $name=>$value){
+                $prepared[]=['group'=>$groupName,'name'=>$name, 'id_user'=>$idUser];
+            }
+        }
+        $db = new DB\User();
+        $db->savePermissions($prepared, $idUser);
     }
 }
