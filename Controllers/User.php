@@ -9,6 +9,7 @@ class User extends \Common\PageStandardController
 
     function index()
     {
+        $this->will('user','show');
         $this->addView('User', 'list');
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
 
@@ -20,6 +21,7 @@ class User extends \Common\PageStandardController
      */
     function edit(int $id)
     {
+        $this->will('user','edit');
         $permissionsStructure=Permissions::readStructure();
         $this->addView('User', 'edit', ['type' => 'edit', 'permissionsStructure'=>$permissionsStructure]);
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
@@ -28,6 +30,7 @@ class User extends \Common\PageStandardController
 
     function edit_data(int $id)
     {
+        $this->will('user','edit');
         $user = new \User\User();
         $data = $user->getById($id);
         if ($data == null)
@@ -41,6 +44,7 @@ class User extends \Common\PageStandardController
      */
     function add()
     {
+        $this->will('user','add');
         $this->addView('User', 'edit', ['type' => 'add']);
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
         $this->pushBreadcrumb(['title' => 'Dodaj', 'url' => '/User/add']);

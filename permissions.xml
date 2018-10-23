@@ -11,5 +11,9 @@
             <name>edit</name>
             <title>Edycja</title>
         </permission>
+        <permission>
+            <name>add</name>
+            <title>Dodawanie</title>
+        </permission>
     </group>
 </permissions>
