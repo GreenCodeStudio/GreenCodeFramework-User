@@ -14,13 +14,13 @@ class User extends \Core\DBModel
 
     public function insert($data)
     {
-        DB::insert('User', $data);
+        return DB::insert('User', $data);
     }
 
     public function savePermissions(array $prepared, int $idUser)
     {
         DB::beginTransaction();
-        DB::query("DELETE FROM user_permission WHERE id_user = ?",[$idUser]);
+        DB::query("DELETE FROM user_permission WHERE id_user = ?", [$idUser]);
         DB::insertMultiple('user_permission', $prepared);
         DB::commit();
     }

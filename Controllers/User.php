@@ -45,7 +45,8 @@ class User extends \Common\PageStandardController
     function add()
     {
         $this->will('user','add');
-        $this->addView('User', 'edit', ['type' => 'add']);
+        $permissionsStructure=Permissions::readStructure();
+        $this->addView('User', 'edit', ['type' => 'add', 'permissionsStructure'=>$permissionsStructure]);
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
         $this->pushBreadcrumb(['title' => 'Dodaj', 'url' => '/User/add']);
     }

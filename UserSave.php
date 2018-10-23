@@ -31,6 +31,18 @@ class UserSave extends \Core\SaveModel
         return $ret;
     }
 
+    private function savePermissions($permission, int $idUser)
+    {
+        $prepared = [];
+        foreach ($permission as $groupName => $group) {
+            foreach ($group as $name => $value) {
+                $prepared[] = ['group' => $groupName, 'name' => $name, 'id_user' => $idUser];
+            }
+        }
+        $db = new DB\User();
+        $db->savePermissions($prepared, $idUser);
+    }
+
     public function changePassword(int $id, $password)
     {
 
@@ -44,18 +56,7 @@ class UserSave extends \Core\SaveModel
     {
         $filtered = $this->filterData($data);
         $db = new DB\User();
-        $db->insert($filtered);
-    }
-
-    private function savePermissions($permission, int $idUser)
-    {
-        $prepared=[];
-        foreach($permission as $groupName=>$group){
-            foreach ($group as $name=>$value){
-                $prepared[]=['group'=>$groupName,'name'=>$name, 'id_user'=>$idUser];
-            }
-        }
-        $db = new DB\User();
-        $db->savePermissions($prepared, $idUser);
+        $id = $db->insert($filtered);
+        $this->savePermissions($data->permission, $id);
     }
 }
