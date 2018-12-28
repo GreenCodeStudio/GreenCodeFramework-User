@@ -7,12 +7,12 @@ use Core\DB;
 
 class UserDB extends \Core\DBModel
 {
+
     public function __construct()
     {
         parent::__construct('user');
+        $this->archiveMode = static::ArchiveMode_OnlyExisting;
     }
-
-
 
     public function savePermissions(array $prepared, int $idUser)
     {
@@ -24,16 +24,28 @@ class UserDB extends \Core\DBModel
 
     public function getByUsername(string $username, bool $getSecretData = false)
     {
+        $archivedSQL = $this->getArchiveModeSQL();
         if ($getSecretData)
             $select = ", salt, password";
         else
             $select = "";
-        return DB::get("SELECT id,mail,name,surname $select FROM user WHERE mail = ?", [$username])[0] ?? null;
+        return DB::get("SELECT id,mail,name,surname $select FROM user WHERE mail = ? $archivedSQL", [$username])[0] ?? null;
+    }
+
+    protected function getArchiveModeSQL()
+    {
+        if ($this->archiveMode == self::ArchiveMode_OnlyExisting)
+            return ' AND !archived';
+        if ($this->archiveMode == self::ArchiveMode_OnlyRemoved)
+            return ' AND archived';
+        return '';
+
     }
 
     public function getById(int $id)
     {
-        return DB::get("SELECT id,mail,name,surname FROM user WHERE id = ?", [$id])[0] ?? null;
+        $archivedSQL = $this->getArchiveModeSQL();
+        return DB::get("SELECT id,mail,name,surname FROM user WHERE id = ? $archivedSQL", [$id])[0] ?? null;
     }
 
     public function getPermissions(int $userId)
@@ -45,6 +57,7 @@ class UserDB extends \Core\DBModel
         }
         return $ret;
     }
+
     public function getDataTable($options)
     {
         $start = (int)$options->start;

@@ -15,5 +15,9 @@
             <name>add</name>
             <title>Dodawanie</title>
         </permission>
+        <permission>
+            <name>remove</name>
+            <title>Usuwanie</title>
+        </permission>
     </group>
 </permissions>

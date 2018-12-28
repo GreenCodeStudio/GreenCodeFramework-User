@@ -33,6 +33,11 @@
             <type>text</type>
             <null>YES</null>
         </column>
+        <column>
+            <name>archived</name>
+            <type>tinyint</type>
+            <null>NO</null>
+        </column>
         <index>
             <type>PRIMARY</type>
             <element>id</element>
