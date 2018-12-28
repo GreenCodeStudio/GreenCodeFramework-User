@@ -9,44 +9,66 @@
 namespace User;
 
 
-use Core\DB;
+use User\DB\UserDB;
 
-class User extends \Core\ReadModel
+class User extends \Core\LogicModel
 {
     public function __construct()
     {
-        parent::__construct('user');
+        $this->defaultDB = new UserDB();
     }
 
     public function getDataTable($options)
     {
-        $start = (int)$options->start;
-        $limit = (int)$options->limit;
-        $rows = DB::get("SELECT id,mail,name,surname FROM user LIMIT $start,$limit");
-        return ['rows' => $rows];
-    }
-
-    public function getByUsername(string $username, bool $getSecretData = false)
-    {
-        if ($getSecretData)
-            $select = ", salt, password";
-        else
-            $select = "";
-        return DB::get("SELECT id,mail,name,surname $select FROM user WHERE mail = ?", [$username])[0] ?? null;
-    }
-
-    public function getById(int $id)
-    {
-        return DB::get("SELECT id,mail,name,surname FROM user WHERE id = ?", [$id])[0] ?? null;
+        return $this->defaultDB->getDataTable($options);
     }
 
     public function getPermissions(int $userId)
     {
-        $data = DB::get("SELECT * FROM user_permission up WHERE id_user = ?", [$userId]);
-        $ret = [];
-        foreach ($data as $row) {
-            $ret[$row['group']][$row['name']] = true;
+        return $this->defaultDB->getPermissions($userId);
+    }
+
+    public function update(int $id, $data)
+    {
+        $filtered = $this->filterData($data);
+        $this->defaultDB->update($id, $filtered);
+        $this->savePermissions($data->permission, $id);
+        if (!empty($data->password) && $data->password === $data->password2) {
+            $this->changePassword($id, $data->password);
         }
+    }
+
+    protected function filterData($data)
+    {
+        $ret = [];
+        $ret['name'] = $data->name;
+        $ret['surname'] = $data->surname;
+        $ret['mail'] = $data->mail;
         return $ret;
+    }
+
+    private function savePermissions($permission, int $idUser)
+    {
+        $prepared = [];
+        foreach ($permission as $groupName => $group) {
+            foreach ($group as $name => $value) {
+                $prepared[] = ['group' => $groupName, 'name' => $name, 'id_user' => $idUser];
+            }
+        }
+        $this->defaultDB->savePermissions($prepared, $idUser);
+    }
+
+    public function changePassword(int $id, $password)
+    {
+        $salt = \Authorization\Authorization::generateSalt();
+        $passwordhash = \Authorization\Authorization::hashPassword($password, $salt);
+        $this->defaultDB->update($id, ['password' => $passwordhash, 'salt' => $salt]);
+    }
+
+    public function insert($data)
+    {
+        $filtered = $this->filterData($data);
+        $id = $this->defaultDB->insert($filtered);
+        $this->savePermissions($data->permission, $id);
     }
 }

@@ -9,7 +9,7 @@ class User extends \Common\PageStandardController
 
     function index()
     {
-        $this->will('user','show');
+        $this->will('user', 'show');
         $this->addView('User', 'list');
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
 
@@ -21,21 +21,21 @@ class User extends \Common\PageStandardController
      */
     function edit(int $id)
     {
-        $this->will('user','edit');
-        $permissionsStructure=Permissions::readStructure();
-        $this->addView('User', 'edit', ['type' => 'edit', 'permissionsStructure'=>$permissionsStructure]);
+        $this->will('user', 'edit');
+        $permissionsStructure = Permissions::readStructure();
+        $this->addView('User', 'edit', ['type' => 'edit', 'permissionsStructure' => $permissionsStructure]);
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
         $this->pushBreadcrumb(['title' => 'Edycja', 'url' => '/User/edit/'.$id]);
     }
 
     function edit_data(int $id)
     {
-        $this->will('user','edit');
+        $this->will('user', 'edit');
         $user = new \User\User();
         $data = $user->getById($id);
         if ($data == null)
             throw new \Core\Exceptions\NotFoundException();
-        $data['permission']=$user->getPermissions($id);
+        $data['permission'] = $user->getPermissions($id);
         return ['user' => $data];
     }
 
@@ -44,9 +44,9 @@ class User extends \Common\PageStandardController
      */
     function add()
     {
-        $this->will('user','add');
-        $permissionsStructure=Permissions::readStructure();
-        $this->addView('User', 'edit', ['type' => 'add', 'permissionsStructure'=>$permissionsStructure]);
+        $this->will('user', 'add');
+        $permissionsStructure = Permissions::readStructure();
+        $this->addView('User', 'edit', ['type' => 'add', 'permissionsStructure' => $permissionsStructure]);
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
         $this->pushBreadcrumb(['title' => 'Dodaj', 'url' => '/User/add']);
     }

@@ -12,19 +12,22 @@ class User extends \Core\AjaxController
 {
     public function getTable($options)
     {
+        $this->will('user', 'show');
         $user = new \User\User();
         return $user->getDataTable($options);
     }
 
     public function update($data)
     {
-        $userSave = new \User\UserSave();
-        $userSave->update($data->id, $data);
+        $this->will('user', 'edit');
+        $user = new \User\User();
+        $user->update($data->id, $data);
     }
 
     public function insert($data)
     {
-        $userSave = new \User\UserSave();
-        $id = $userSave->insert($data);
+        $this->will('user', 'add');
+        $user = new \User\User();
+        $id = $user->insert($data);
     }
 }
