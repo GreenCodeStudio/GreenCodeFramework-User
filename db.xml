@@ -66,5 +66,12 @@
             <element>group</element>
             <element>name</element>
         </index>
+        <index>
+            <type>FOREIGN</type>
+            <element>id_user</element>
+            <reference name="user">
+                <element>id</element>
+            </reference>
+        </index>
     </table>
 </root>
