@@ -63,6 +63,7 @@ class UserDB extends \Core\DBModel
         $start = (int)$options->start;
         $limit = (int)$options->limit;
         $rows = DB::get("SELECT id,mail,name,surname FROM user LIMIT $start,$limit");
-        return ['rows' => $rows];
+        $total = DB::get("SELECT count(*) as count FROM user")[0]->count;
+        return ['rows' => $rows, 'total' => $total];
     }
 }

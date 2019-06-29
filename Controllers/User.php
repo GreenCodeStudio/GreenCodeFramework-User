@@ -35,7 +35,7 @@ class User extends \Common\PageStandardController
         $data = $user->getById($id);
         if ($data == null)
             throw new \Core\Exceptions\NotFoundException();
-        $data['permission'] = $user->getPermissions($id);
+        $data->permission = $user->getPermissions($id);
         return ['user' => $data];
     }
 
