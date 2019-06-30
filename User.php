@@ -11,7 +11,7 @@ namespace User;
 
 use User\DB\UserDB;
 
-class User extends \Core\LogicModel
+class User extends \Core\BussinesLogic
 {
     public function __construct()
     {
@@ -36,6 +36,7 @@ class User extends \Core\LogicModel
         if (!empty($data->password) && $data->password === $data->password2) {
             $this->changePassword($id, $data->password);
         }
+        \Core\WebSocket\Sender::sendToUsers(["User", "User", "Update", $id]);
     }
 
     protected function filterData($data)

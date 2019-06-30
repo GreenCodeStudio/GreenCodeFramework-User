@@ -6,7 +6,7 @@
         <h1>Wszyscy użytkownicy</h1>
     </header>
     <div class="dataTableContainer">
-        <table class="dataTable" data-controller="User" data-method="getTable">
+        <table class="dataTable" data-controller="User" data-method="getTable" data-web-socket-path="User/User">
             <thead>
             <tr>
                 <th data-value="name">Imie</th>

@@ -5,7 +5,7 @@ namespace User\DB;
 use Core\DB;
 
 
-class UserDB extends \Core\DBModel
+class UserDB extends \Core\Repository
 {
 
     public function __construct()
