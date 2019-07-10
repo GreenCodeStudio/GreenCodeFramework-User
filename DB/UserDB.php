@@ -3,6 +3,7 @@
 namespace User\DB;
 
 use Core\DB;
+use mysql_xdevapi\Exception;
 
 
 class UserDB extends \Core\Repository
@@ -62,8 +63,21 @@ class UserDB extends \Core\Repository
     {
         $start = (int)$options->start;
         $limit = (int)$options->limit;
-        $rows = DB::get("SELECT id,mail,name,surname FROM user LIMIT $start,$limit");
+        $sqlOrder = $this->getOrderSQL($options);
+        $rows = DB::get("SELECT id,mail,name,surname FROM user $sqlOrder LIMIT $start,$limit");
         $total = DB::get("SELECT count(*) as count FROM user")[0]->count;
         return ['rows' => $rows, 'total' => $total];
+    }
+
+    private function getOrderSQL($options)
+    {
+        if (empty($options->sort))
+            return "";
+        else {
+            $mapping = ['name' => 'name', 'surname' => 'surname', 'mail' => 'mail'];
+            if (empty($mapping[$options->sort->col]))
+                throw new Exception();
+            return ' ORDER BY '.DB::safeKey($mapping[$options->sort->col]).' '.($options->sort->desc ? 'DESC' : 'ASC').' ';
+        }
     }
 }
