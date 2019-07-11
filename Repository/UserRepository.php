@@ -50,7 +50,7 @@ class UserRepository extends \Core\Repository
 
     public function getPermissions(int $userId)
     {
-        $data = DB::get("SELECT * FROM user_permission up WHERE id_user = ?", [$userId]);
+        $data = DB::getArray("SELECT * FROM user_permission up WHERE id_user = ?", [$userId]);
         $ret = [];
         foreach ($data as $row) {
             $ret[$row['group']][$row['name']] = true;
