@@ -9,13 +9,13 @@
 namespace User;
 
 
-use User\DB\UserDB;
+use User\Repository\UserRepository;
 
 class User extends \Core\BussinesLogic
 {
     public function __construct()
     {
-        $this->defaultDB = new UserDB();
+        $this->defaultDB = new UserRepository();
     }
 
     public function getDataTable($options)

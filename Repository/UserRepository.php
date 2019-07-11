@@ -1,12 +1,11 @@
 <?php
 
-namespace User\DB;
+namespace User\Repository;
 
 use Core\DB;
-use mysql_xdevapi\Exception;
 
 
-class UserDB extends \Core\Repository
+class UserRepository extends \Core\Repository
 {
 
     public function __construct()
