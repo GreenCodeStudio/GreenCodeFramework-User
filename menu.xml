@@ -11,6 +11,10 @@
                 <link>/User/add</link>
                 <title>Dodaj usera</title>
             </element>
+            <element>
+                <link>/Token</link>
+                <title>Tokeny</title>
+            </element>
         </menu>
     </element>
 </menu>

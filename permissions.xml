@@ -19,5 +19,22 @@
             <name>remove</name>
             <title>Usuwanie</title>
         </permission>
+        <permission>
+            <name>showToken</name>
+            <title>Odczyt tokenów</title>
+        </permission>
+        <permission>
+            <name>addToken</name>
+            <title>Dodawanie tokenów</title>
+        </permission>
+        <permission>
+            <name>removeToken</name>
+            <title>Usuwanie tokenów</title>
+        </permission>
+    </group>
+    <group>
+        <name>Token</name>
+        <title>Token</title>
+
     </group>
 </permissions>

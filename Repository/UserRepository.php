@@ -79,4 +79,10 @@ class UserRepository extends \Core\Repository
             return ' ORDER BY '.DB::safeKey($mapping[$options->sort->col]).' '.($options->sort->desc ? 'DESC' : 'ASC').' ';
         }
     }
+
+    public function getSelect()
+    {
+        $defaultTable = static::$defaultTable;
+        return DB::get("SELECT id, CONCAT(name, ' ', surname) as title FROM user");
+    }
 }

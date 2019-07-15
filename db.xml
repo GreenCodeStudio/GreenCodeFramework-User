@@ -74,4 +74,54 @@
             </reference>
         </index>
     </table>
+    <table>
+        <name>Token</name>
+        <column>
+            <name>id</name>
+            <type>int</type>
+            <null>NO</null>
+            <autoincrement>YES</autoincrement>
+        </column>
+        <column>
+            <name>token</name>
+            <type>varchar(255)</type>
+            <null>NO</null>
+        </column>
+        <column>
+            <name>type</name>
+            <type>enum('login')</type>
+            <null>NO</null>
+        </column>
+        <column>
+            <name>id_user</name>
+            <type>int</type>
+            <null>NO</null>
+        </column>
+        <column>
+            <name>created</name>
+            <type>datetime</type>
+            <null>NO</null>
+        </column>
+        <column>
+            <name>expire</name>
+            <type>datetime</type>
+            <null>YES</null>
+        </column>
+        <column>
+            <name>isOnce</name>
+            <type>bool</type>
+            <null>NO</null>
+        </column>
+        <index>
+            <type>PRIMARY</type>
+            <element>id</element>
+        </index>
+        <index>
+            <type>FOREIGN</type>
+            <element>id_user</element>
+            <reference name="user">
+                <element>id</element>
+            </reference>
+        </index>
+    </table>
 </root>
