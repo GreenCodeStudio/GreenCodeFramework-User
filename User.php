@@ -71,5 +71,8 @@ class User extends \Core\BussinesLogic
         $filtered = $this->filterData($data);
         $id = $this->defaultDB->insert($filtered);
         $this->savePermissions($data->permission, $id);
+        if (!empty($data->password) && $data->password === $data->password2) {
+            $this->changePassword($id, $data->password);
+        }
     }
 }
