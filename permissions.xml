@@ -32,9 +32,4 @@
             <title>Usuwanie tokenów</title>
         </permission>
     </group>
-    <group>
-        <name>Token</name>
-        <title>Token</title>
-
-    </group>
 </permissions>
