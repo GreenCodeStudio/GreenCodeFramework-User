@@ -47,7 +47,7 @@ class Token extends \Core\BussinesLogic
     public function getSelects()
     {
         $ret = [];
-        $user = new Repository\userRepository();
+        $user = new Repository\UserRepository();
         $ret["user"] = $user->getSelect();
         return $ret;
     }

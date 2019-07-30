@@ -10,7 +10,7 @@ class TokenRepository extends \Core\Repository
 
     public function __construct()
     {
-        parent::__construct('Token');
+        parent::__construct('token');
         $this->archiveMode = static::ArchiveMode_OnlyExisting;
     }
 
@@ -19,8 +19,8 @@ class TokenRepository extends \Core\Repository
         $start = (int)$options->start;
         $limit = (int)$options->limit;
         $sqlOrder = $this->getOrderSQL($options);
-        $rows = DB::get("SELECT * FROM Token $sqlOrder LIMIT $start,$limit");
-        $total = DB::get("SELECT count(*) as count FROM Token")[0]->count;
+        $rows = DB::get("SELECT * FROM token $sqlOrder LIMIT $start,$limit");
+        $total = DB::get("SELECT count(*) as count FROM token")[0]->count;
         return ['rows' => $rows, 'total' => $total];
     }
 

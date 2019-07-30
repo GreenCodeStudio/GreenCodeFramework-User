@@ -1,5 +1,5 @@
 <form class="dataForm" data-name="user" data-controller="User"
-      data-method="<?= $data['type'] == 'edit' ? 'update' : 'insert' ?>" data-goto="/user">
+      data-method="<?= $data['type'] == 'edit' ? 'update' : 'insert' ?>" data-goto="/User">
     <div class="topBarButtons">
         <button class="button" type="button"><span class="icon-cancel"></span>Anuluj</button>
         <button class="button"><span class="icon-save"></span>Zapisz</button>
