@@ -14,6 +14,10 @@ class TokenRepository extends \Core\Repository
         $this->archiveMode = static::ArchiveMode_OnlyExisting;
     }
 
+    public function defaultTable(): string
+    {
+        return "token";
+    }
     public function getDataTable($options)
     {
         $start = (int)$options->start;

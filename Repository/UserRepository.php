@@ -10,7 +10,6 @@ class UserRepository extends \Core\Repository
 
     public function __construct()
     {
-        parent::__construct('user');
         $this->archiveMode = static::ArchiveMode_OnlyExisting;
     }
 
@@ -82,7 +81,12 @@ class UserRepository extends \Core\Repository
 
     public function getSelect()
     {
-        $defaultTable = $this->defaultTable;
+        $defaultTable = $this->defaultTable();
         return DB::get("SELECT id, CONCAT(name, ' ', surname) as title FROM user");
+    }
+
+    public function defaultTable(): string
+    {
+        return "user";
     }
 }
