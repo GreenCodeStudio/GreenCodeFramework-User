@@ -82,7 +82,7 @@ class UserRepository extends \Core\Repository
 
     public function getSelect()
     {
-        $defaultTable = static::$defaultTable;
+        $defaultTable = $this->defaultTable;
         return DB::get("SELECT id, CONCAT(name, ' ', surname) as title FROM user");
     }
 }
