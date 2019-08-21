@@ -10,7 +10,6 @@ class TokenRepository extends \Core\Repository
 
     public function __construct()
     {
-        parent::__construct('token');
         $this->archiveMode = static::ArchiveMode_OnlyExisting;
     }
 

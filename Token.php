@@ -26,20 +26,20 @@ class Token extends \Core\BussinesLogic
     protected function filterData($data)
     {
 
+        $filtered['isOnce'] = (int)isset($data->isOnce);
+        $filtered['type'] = $data->type;
+        $filtered['id_user'] = $data->id_user;
 
-        return $ret;
+        return $filtered;
     }
 
     public function insert($data)
     {
         $now = (new \DateTime());
-        $ret = [];
-        $filtered['token'] =  bin2hex(openssl_random_pseudo_bytes(16));
-        $filtered['type'] = $data->type;
-        $filtered['id_user'] = $data->id_user;
+        $filtered = $this->filterData($data);
+        $filtered['token'] = bin2hex(openssl_random_pseudo_bytes(16));
         $filtered['created'] = $now->format("Y-m-d H:i:s");
         $filtered['expire'] = null;
-        $filtered['isOnce'] = (int)isset($data->isOnce);
         $id = $this->defaultDB->insert($filtered);
         \Core\WebSocket\Sender::sendToUsers(["User", "Token", "Insert", $id]);
     }
