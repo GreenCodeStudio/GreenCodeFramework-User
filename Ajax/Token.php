@@ -1,4 +1,5 @@
 <?php
+
 namespace User\Ajax;
 
 class Token extends \Core\AjaxController

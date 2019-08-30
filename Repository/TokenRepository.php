@@ -17,6 +17,7 @@ class TokenRepository extends \Core\Repository
     {
         return "token";
     }
+
     public function getDataTable($options)
     {
         $start = (int)$options->start;

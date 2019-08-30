@@ -48,9 +48,9 @@
             foreach ($permGroup->children as $perm) {
                 ?>
                 <label>
-                <span><?= htmlspecialchars($perm->title) ?></span>
+                    <span><?= htmlspecialchars($perm->title) ?></span>
                     <input type="checkbox"
-                              name="permission[<?= htmlspecialchars($permGroup->name) ?>][<?= htmlspecialchars($perm->name) ?>]">
+                           name="permission[<?= htmlspecialchars($permGroup->name) ?>][<?= htmlspecialchars($perm->name) ?>]">
                 </label>
                 <?php
             }
