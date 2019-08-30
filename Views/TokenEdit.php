@@ -11,7 +11,7 @@
         </header>
         <label>
             <span>Typ</span>
-            <select type="text" name="type" required>
+            <select name="type" required>
                 <option value="login">Token do logowania bezhasłowego</option>
             </select>
         </label>

@@ -30,6 +30,6 @@ class User extends PageAjaxController
     {
         $this->will('user', 'add');
         $user = new \User\User();
-        $id = $user->insert($data);
+        $user->insert($data);
     }
 }

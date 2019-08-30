@@ -37,7 +37,7 @@ class TokenRepository extends Repository
         else {
             $mapping = ['token' => 'token', 'type' => 'type', 'id_user' => 'id_user', 'created' => 'created', 'expire' => 'expire', 'isOnce' => 'isOnce'];
             if (empty($mapping[$options->sort->col]))
-                throw new Exception();
+                throw new \Exception();
             return ' ORDER BY '.DB::safeKey($mapping[$options->sort->col]).' '.($options->sort->desc ? 'DESC' : 'ASC').' ';
         }
     }

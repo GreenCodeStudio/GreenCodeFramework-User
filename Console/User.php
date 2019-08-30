@@ -17,6 +17,6 @@ class User extends AbstractController
         $data->mail = $mail;
         $data->password = $data->password2 = $password;
         $data->permission = [];
-        $id = $user->insert($data);
+        $user->insert($data);
     }
 }

@@ -4,6 +4,7 @@ namespace User\Repository;
 
 use Core\DB;
 use Core\Repository;
+use Exception;
 
 
 class UserRepository extends Repository
@@ -82,7 +83,6 @@ class UserRepository extends Repository
 
     public function getSelect()
     {
-        $defaultTable = $this->defaultTable();
         return DB::get("SELECT id, CONCAT(name, ' ', surname) as title FROM user");
     }
 

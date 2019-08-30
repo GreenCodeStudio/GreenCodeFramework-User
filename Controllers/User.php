@@ -19,6 +19,7 @@ class User extends PageStandardController
 
     /**
      * @param int $id
+     * @throws \Authorization\Exceptions\NoPermissionException
      * @OfflineDataOnly
      */
     function edit(int $id)

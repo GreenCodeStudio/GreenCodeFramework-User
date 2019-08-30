@@ -19,6 +19,7 @@ class Token extends PageStandardController
 
     /**
      * @param int $id
+     * @throws NotFoundException
      */
     function view(int $id)
     {
@@ -37,7 +38,6 @@ class Token extends PageStandardController
     function add()
     {
         $this->will('user', 'addToken');
-        $permissionsStructure = Permissions::readStructure();
         $this->addView('User', 'TokenEdit', ['type' => 'add']);
         $this->pushBreadcrumb(['title' => 'Token', 'url' => '/Token']);
         $this->pushBreadcrumb(['title' => 'Dodaj', 'url' => '/Token/add']);
