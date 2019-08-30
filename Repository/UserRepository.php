@@ -3,9 +3,10 @@
 namespace User\Repository;
 
 use Core\DB;
+use Core\Repository;
 
 
-class UserRepository extends \Core\Repository
+class UserRepository extends Repository
 {
 
     public function __construct()

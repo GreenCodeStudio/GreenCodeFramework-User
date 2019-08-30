@@ -2,7 +2,9 @@
 
 namespace User\Ajax;
 
-class Token extends \Core\AjaxController
+use Core\AjaxController;
+
+class Token extends AjaxController
 {
     public function getTable($options)
     {

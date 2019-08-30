@@ -2,13 +2,16 @@
 
 namespace User\Console;
 
-class User extends \Core\AbstractController
+use Core\AbstractController;
+use stdClass;
+
+class User extends AbstractController
 {
 
     function add(string $name, string $surname, string $mail, string $password)
     {
         $user = new \User\User();
-        $data = new \stdClass();
+        $data = new stdClass();
         $data->name = $name;
         $data->surname = $surname;
         $data->mail = $mail;

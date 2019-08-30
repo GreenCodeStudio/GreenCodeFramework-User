@@ -8,7 +8,9 @@
 
 namespace User\Ajax;
 
-class User extends \Common\PageAjaxController
+use Common\PageAjaxController;
+
+class User extends PageAjaxController
 {
     public function getTable($options)
     {

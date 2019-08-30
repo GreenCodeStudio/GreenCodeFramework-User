@@ -9,9 +9,12 @@
 namespace User;
 
 
+use Authorization\Authorization;
+use Core\BussinesLogic;
+use Core\WebSocket\Sender;
 use User\Repository\UserRepository;
 
-class User extends \Core\BussinesLogic
+class User extends BussinesLogic
 {
     public function __construct()
     {
@@ -36,7 +39,7 @@ class User extends \Core\BussinesLogic
         if (!empty($data->password) && $data->password === $data->password2) {
             $this->changePassword($id, $data->password);
         }
-        \Core\WebSocket\Sender::sendToUsers(["User", "User", "Update", $id]);
+        Sender::sendToUsers(["User", "User", "Update", $id]);
     }
 
     protected function filterData($data)
@@ -61,8 +64,8 @@ class User extends \Core\BussinesLogic
 
     public function changePassword(int $id, $password)
     {
-        $salt = \Authorization\Authorization::generateSalt();
-        $passwordhash = \Authorization\Authorization::hashPassword($password, $salt);
+        $salt = Authorization::generateSalt();
+        $passwordhash = Authorization::hashPassword($password, $salt);
         $this->defaultDB->update($id, ['password' => $passwordhash, 'salt' => $salt]);
     }
 

@@ -3,9 +3,10 @@
 namespace User\Controllers;
 
 use Authorization\Permissions;
+use Common\PageStandardController;
 use Core\Exceptions\NotFoundException;
 
-class Token extends \Common\PageStandardController
+class Token extends PageStandardController
 {
 
     function index()

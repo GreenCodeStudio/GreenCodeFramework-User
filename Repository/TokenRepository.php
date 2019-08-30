@@ -3,9 +3,11 @@
 namespace User\Repository;
 
 use Core\DB;
+use Core\Repository;
+use stdClass;
 
 
-class TokenRepository extends \Core\Repository
+class TokenRepository extends Repository
 {
 
     public function __construct()
@@ -47,7 +49,7 @@ class TokenRepository extends \Core\Repository
         LEFT JOIN user u on t.id_user = u.id
         WHERE t.token=?", [$token]);
         if (empty($tokens)) return null;
-        $tokens[0]->user = new \stdClass();
+        $tokens[0]->user = new stdClass();
         $tokens[0]->user->id = $tokens[0]->user_id;
         $tokens[0]->user->mail = $tokens[0]->user_mail;
         $tokens[0]->user->name = $tokens[0]->user_name;

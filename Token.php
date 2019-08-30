@@ -2,9 +2,12 @@
 
 namespace User;
 
+use Core\BussinesLogic;
+use Core\WebSocket\Sender;
+use DateTime;
 use User\Repository\TokenRepository;
 
-class Token extends \Core\BussinesLogic
+class Token extends BussinesLogic
 {
     public function __construct()
     {
@@ -20,7 +23,7 @@ class Token extends \Core\BussinesLogic
     {
         $filtered = $this->filterData($data);
         $this->defaultDB->update($id, $filtered);
-        \Core\WebSocket\Sender::sendToUsers(["User", "Token", "Update", $id]);
+        Sender::sendToUsers(["User", "Token", "Update", $id]);
     }
 
     protected function filterData($data)
@@ -35,13 +38,13 @@ class Token extends \Core\BussinesLogic
 
     public function insert($data)
     {
-        $now = (new \DateTime());
+        $now = (new DateTime());
         $filtered = $this->filterData($data);
         $filtered['token'] = bin2hex(openssl_random_pseudo_bytes(16));
         $filtered['created'] = $now->format("Y-m-d H:i:s");
         $filtered['expire'] = null;
         $id = $this->defaultDB->insert($filtered);
-        \Core\WebSocket\Sender::sendToUsers(["User", "Token", "Insert", $id]);
+        Sender::sendToUsers(["User", "Token", "Insert", $id]);
     }
 
     public function getSelects()

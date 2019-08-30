@@ -3,8 +3,10 @@
 namespace User\Controllers;
 
 use Authorization\Permissions;
+use Common\PageStandardController;
+use Core\Exceptions\NotFoundException;
 
-class User extends \Common\PageStandardController
+class User extends PageStandardController
 {
 
     function index()
@@ -34,7 +36,7 @@ class User extends \Common\PageStandardController
         $user = new \User\User();
         $data = $user->getById($id);
         if ($data == null)
-            throw new \Core\Exceptions\NotFoundException();
+            throw new NotFoundException();
         $data->permission = $user->getPermissions($id);
         return ['user' => $data];
     }
