@@ -41,7 +41,7 @@ class Token extends BussinesLogic
         $now = (new DateTime());
         $filtered = $this->filterData($data);
         $filtered['token'] = bin2hex(openssl_random_pseudo_bytes(16));
-        $filtered['created'] = $now->format("Y-m-d H:i:s");
+        $filtered['created'] = $now;
         $filtered['expire'] = null;
         $id = $this->defaultDB->insert($filtered);
         Sender::sendToUsers(["User", "Token", "Insert", $id]);

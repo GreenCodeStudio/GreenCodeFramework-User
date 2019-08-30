@@ -17,6 +17,6 @@ class Token extends AjaxController
     {
         $this->will('user', 'addToken');
         $Token = new \User\Token();
-         $Token->insert($data);
+        $Token->insert($data);
     }
 }
