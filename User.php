@@ -65,8 +65,8 @@ class User extends BussinesLogic
     public function changePassword(int $id, $password)
     {
         $salt = Authorization::generateSalt();
-        $passwordhash = Authorization::hashPassword($password, $salt);
-        $this->defaultDB->update($id, ['password' => $passwordhash, 'salt' => $salt]);
+        $passwordHash = Authorization::hashPassword($password, $salt);
+        $this->defaultDB->update($id, ['password' => $passwordHash, 'salt' => $salt]);
     }
 
     public function insert($data)
