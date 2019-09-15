@@ -90,4 +90,14 @@ class UserRepository extends Repository
     {
         return "user";
     }
+
+    public function getAll()
+    {
+        return DB::get("SELECT id, name, surname, mail from user");
+    }
+
+    public function insertPermission(array $array)
+    {
+        DB::insert('user_permission', $array);
+    }
 }

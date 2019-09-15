@@ -78,4 +78,12 @@ class User extends BussinesLogic
             $this->changePassword($id, $data->password);
         }
     }
+    public function getAll(){
+        return $this->defaultDB->getAll();
+    }
+
+    public function addPermission(int $idUser, string $group, string $name)
+    {
+        $this->defaultDB->insertPermission(['id_user'=>$idUser, 'group'=>$group, 'name'=>$name]);
+    }
 }
