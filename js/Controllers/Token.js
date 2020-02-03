@@ -1,5 +1,4 @@
 import {FormManager} from "../../../Core/js/form";
-import {AjaxTask} from "../../../Core/js/ajaxTask";
 import {pageManager} from "../../../Core/js/pageManager";
 
 export class edit {
@@ -11,7 +10,7 @@ export class edit {
         form.load(this.data.Token);
 
         form.submit = async data => {
-            await AjaxTask.startNewTask('Token', 'update', data);
+            await Ajax.Token.update(data);
             pageManager.goto('/Token');
         }
     }
@@ -25,7 +24,7 @@ export default class add {
         form.loadSelects(this.data.selects);
 
         form.submit = async data => {
-            await AjaxTask.startNewTask('Token', 'insert', data);
+            await Ajax.Token.insert(data);
             pageManager.goto('/Token');
         }
     }
