@@ -1,5 +1,5 @@
 import {FormManager} from "../../../Core/js/form";
-import {AjaxTask} from "../../../Core/js/ajaxTask";
+import {Ajax} from "../../../Core/js/ajax";
 import {pageManager} from "../../../Core/js/pageManager";
 
 export class add {

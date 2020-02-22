@@ -1,5 +1,6 @@
 import {FormManager} from "../../../Core/js/form";
 import {pageManager} from "../../../Core/js/pageManager";
+import {Ajax} from "../../../Core/js/ajax";
 
 export class edit {
     constructor(page, data) {

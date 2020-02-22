@@ -27,11 +27,11 @@
         </header>
         <label>
             <span>Hasło</span>
-            <input name="password" type="password">
+            <input name="password" type="password" autocomplete="new-password">
         </label>
         <label>
             <span>Powtórz</span>
-            <input name="password2" type="password">
+            <input name="password2" type="password" autocomplete="new-password">
         </label>
     </section>
 
