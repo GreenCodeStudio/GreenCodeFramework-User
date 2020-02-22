@@ -1,6 +1,7 @@
 import {FormManager} from "../../../Core/js/form";
 import {Ajax} from "../../../Core/js/ajax";
 import {pageManager} from "../../../Core/js/pageManager";
+import {Ajax} from "../../../Core/js/ajax";
 
 export class add {
     constructor(page, data) {
