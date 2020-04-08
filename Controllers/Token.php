@@ -28,7 +28,7 @@ class Token extends PageStandardController
         $data = $Token->getById($id);
         if ($data == null)
             throw new NotFoundException();
-        $this->addView('user', 'TokenView', ['data' => $data]);
+        $this->addView('User', 'TokenView', ['data' => $data]);
         $this->pushBreadcrumb(['title' => 'Token', 'url' => '/Token']);
         $this->pushBreadcrumb(['title' => 'Podgląd', 'url' => '/Token/view/'.$id]);
     }

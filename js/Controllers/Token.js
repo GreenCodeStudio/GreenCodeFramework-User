@@ -1,7 +1,17 @@
 import {FormManager} from "../../../Core/js/form";
 import {pageManager} from "../../../Core/js/pageManager";
 import {Ajax} from "../../../Core/js/ajax";
+import {DatasourceAjax} from "../../../Core/js/datasourceAjax";
+import {TableManager} from "../../../Core/js/table";
 
+export class index {
+    constructor(page, data) {
+        const table = page.querySelector('.dataTable');
+        let datasource = new DatasourceAjax('Token', 'getTable', ['User', 'Token']);
+        table.datatable = new TableManager(table, datasource);
+        table.datatable.refresh();
+    }
+}
 export class edit {
     constructor(page, data) {
         this.page = page;
