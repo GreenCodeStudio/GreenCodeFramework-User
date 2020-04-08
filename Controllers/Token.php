@@ -23,6 +23,7 @@ class Token extends PageStandardController
      */
     function view(int $id)
     {
+        $this->will('user', 'showToken');
         $Token = new \User\Token();
         $data = $Token->getById($id);
         if ($data == null)
