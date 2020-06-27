@@ -2,7 +2,7 @@
 
 namespace User\Repository;
 
-use Core\DB;
+use Core\Database\DB;
 use Core\Repository;
 use Exception;
 
