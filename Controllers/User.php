@@ -2,6 +2,7 @@
 
 namespace User\Controllers;
 
+use Authorization\Authorization;
 use Authorization\Permissions;
 use Common\PageStandardController;
 use Core\Exceptions\NotFoundException;
@@ -16,6 +17,7 @@ class User extends PageStandardController
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
 
     }
+
 
     /**
      * @param int $id
@@ -52,5 +54,13 @@ class User extends PageStandardController
         $this->addView('User', 'edit', ['type' => 'add', 'permissionsStructure' => $permissionsStructure]);
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
         $this->pushBreadcrumb(['title' => 'Dodaj', 'url' => '/User/add']);
+    }
+
+    function myAccount()
+    {
+        $this->will('user', 'show');
+        $this->pushBreadcrumb(['title' => 'Moje konto', 'url' => '/User/myAccount']);
+        $user = ( new \User\User())->getById(Authorization::getUserId());
+        $this->addView('User', 'myAccount', ['user' => $user]);
     }
 }
