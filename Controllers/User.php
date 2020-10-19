@@ -58,7 +58,6 @@ class User extends PageStandardController
 
     function myAccount()
     {
-        $this->will('user', 'show');
         $this->pushBreadcrumb(['title' => 'Moje konto', 'url' => '/User/myAccount']);
         $user = ( new \User\User())->getById(Authorization::getUserId());
         $this->addView('User', 'myAccount', ['user' => $user]);
