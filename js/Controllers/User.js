@@ -4,13 +4,36 @@ import {pageManager} from "../../../Core/js/pageManager";
 import {DatasourceAjax} from "../../../Core/js/datasourceAjax";
 import {TableManager} from "../../../Core/js/table";
 import {modal} from "../../../Core/js/modal";
+import {ObjectsList} from "../../../Core/js/ObjectsList/objectsList";
+import {t as TCommonBase} from "../../../CommonBase/i18n.xml";
 
 export class index {
     constructor(page, data) {
-        const table = page.querySelector('.dataTable');
+        const container = page.querySelector('.UsersList');
         let datasource = new DatasourceAjax('User', 'getTable', ['User', 'User']);
-        table.datatable = new TableManager(table, datasource);
-        table.datatable.refresh();
+        let objectsList = new ObjectsList(datasource);
+        objectsList.columns = [{name: "Imie", content: row => row.name, sortName: 'name'},{name: "Nazwisko", content: row => row.surname, sortName: 'surname'},{name: "Email", content: row => row.mail, sortName: 'mail'}];
+        objectsList.generateActions = (rows, mode) => {
+            let ret = [];
+            if (rows.length == 1) {
+                ret.push({
+                    name: TCommonBase("edit"),
+                    icon: 'icon-edit',
+                    href: "/User/edit/" + rows[0].id,
+                    main: true
+                });
+            }
+            if (mode != 'row') {
+                ret.push({
+                    name: TCommonBase("editInNewTab"), icon: 'icon-edit', showInTable: false, command() {
+                        rows.forEach(x => window.open("/User/edit/" + x.id))
+                    }
+                });
+            }
+            return ret;
+        }
+        container.append(objectsList);
+        objectsList.refresh();
     }
 }
 
