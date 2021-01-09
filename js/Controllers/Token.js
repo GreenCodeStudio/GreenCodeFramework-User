@@ -27,7 +27,7 @@ export class edit {
     }
 }
 
-export default class add {
+export class add {
     constructor(page, data) {
         this.page = page;
         this.data = data;
