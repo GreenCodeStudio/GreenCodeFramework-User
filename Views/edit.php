@@ -1,6 +1,6 @@
 <form class="dataForm">
     <div class="topBarButtons">
-        <button class="button" type="button"><span class="icon-cancel"></span>Anuluj</button>
+        <a href="/User/" class="button" type="button"><span class="icon-cancel"></span>Anuluj</a>
         <button class="button"><span class="icon-save"></span>Zapisz</button>
     </div>
     <input name="id" type="hidden">
