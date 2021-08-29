@@ -12,6 +12,10 @@
                 <title>Lista</title>
             </element>
             <element>
+                <permission>
+                    <group>token</group>
+                    <name>show</name>
+                </permission>
                 <link>/Token</link>
                 <title>Tokeny</title>
             </element>
