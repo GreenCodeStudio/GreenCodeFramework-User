@@ -43,10 +43,14 @@ class UserRepository extends Repository
 
     }
 
-    public function getById(int $id)
+    public function getById(int $id, bool $getSecretData = false)
     {
         $archivedSQL = $this->getArchiveModeSQL();
-        return DB::get("SELECT id,mail,name,surname FROM user WHERE id = ? $archivedSQL", [$id])[0] ?? null;
+        if ($getSecretData)
+            $select = ", salt, password";
+        else
+            $select = "";
+        return DB::get("SELECT id,mail,name,surname $select FROM user WHERE id = ? $archivedSQL", [$id])[0] ?? null;
     }
 
     public function getPermissions(int $userId)
