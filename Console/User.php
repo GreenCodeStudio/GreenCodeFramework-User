@@ -17,18 +17,25 @@ class User extends AbstractController
         $data->mail = $mail;
         $data->password = $data->password2 = $password;
         $data->permission = [];
-        $user->insert($data);
+        $id = $user->insert($data);
+        return $user->getById($id);
     }
-    function get(){
+
+    function get()
+    {
         $user = new \User\User();
         return $user->getAll();
     }
-    function addPermssion(int $idUser, string $group, string $name){
+
+    function addPermssion(int $idUser, string $group, string $name)
+    {
 
         $user = new \User\User();
         $user->addPermission($idUser, $group, $name);
     }
-    function addAllPermissions(int $idUser){
+
+    function addAllPermissions(int $idUser)
+    {
 
         $user = new \User\User();
         $user->addAllPermissions($idUser);
