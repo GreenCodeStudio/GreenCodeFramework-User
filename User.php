@@ -78,6 +78,7 @@ class User extends BussinesLogic
         if (!empty($data->password) && $data->password === $data->password2) {
             $this->changePassword($id, $data->password);
         }
+        return $id;
     }
     public function getAll(){
         return $this->defaultDB->getAll();
