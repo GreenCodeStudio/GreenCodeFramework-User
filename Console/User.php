@@ -28,4 +28,9 @@ class User extends AbstractController
         $user = new \User\User();
         $user->addPermission($idUser, $group, $name);
     }
+    function addAllPermissions(int $idUser){
+
+        $user = new \User\User();
+        $user->addAllPermissions($idUser);
+    }
 }

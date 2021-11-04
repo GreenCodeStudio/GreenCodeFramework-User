@@ -10,6 +10,7 @@ namespace User;
 
 
 use Authorization\Authorization;
+use Authorization\Permissions;
 use Core\BussinesLogic;
 use Core\WebSocket\Sender;
 use User\Repository\UserRepository;
@@ -85,5 +86,18 @@ class User extends BussinesLogic
     public function addPermission(int $idUser, string $group, string $name)
     {
         $this->defaultDB->insertPermission(['id_user'=>$idUser, 'group'=>$group, 'name'=>$name]);
+    }
+
+    public function addAllPermissions(int $idUser)
+    {
+        $permissionsStructure = Permissions::readStructure();
+        dump($permissionsStructure);
+        $prepared = [];
+        foreach ($permissionsStructure as $group) {
+            foreach ($group->children as $value) {
+                $prepared[] = ['group' => $group->name, 'name' => $value->name, 'id_user' => $idUser];
+            }
+        }
+        $this->defaultDB->savePermissions($prepared, $idUser);
     }
 }
