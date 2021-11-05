@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <link>/User</link>
+        <title>Wyświetl listę użytkowników</title>
+        <keywords>wyświetl pokaż listę tabelę lista tabela użytkowników użytkownicy wszyscy</keywords>
+        <permission>
+            <group>user</group>
+            <name>show</name>
+        </permission>
+    </action>
+
+    <action>
+        <link>/User/add</link>
+        <title>Dodaj użytkownika</title>
+        <keywords>dodaj dodawanie nowy użytkownika użytkonik</keywords>
+        <permission>
+            <group>user</group>
+            <name>add</name>
+        </permission>
+    </action>
+</actions>
