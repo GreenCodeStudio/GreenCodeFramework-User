@@ -7,7 +7,7 @@ module.exports = class extends BaseSeleniumTest {
     }
 
     async mainTest() {
-        await this.driver.get('/User');
+        await this.openURL('/User');
         await this.asleep(1000);
         await this.takeScreenshot('user-before')
         await (await this.driver.findElements(By.css('a[href="/User/add"]'))).click();
