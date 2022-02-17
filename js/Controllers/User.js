@@ -12,6 +12,7 @@ export class index {
         const container = page.querySelector('.UsersList');
         let datasource = new DatasourceAjax('User', 'getTable', ['User', 'User']);
         let objectsList = new ObjectsList(datasource);
+        objectsList.icon = 'icon-user';
         objectsList.columns = [{name: "Imie", content: row => row.name, sortName: 'name'},{name: "Nazwisko", content: row => row.surname, sortName: 'surname'},{name: "Email", content: row => row.mail, sortName: 'mail'}];
         objectsList.generateActions = (rows, mode) => {
             let ret = [];
