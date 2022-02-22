@@ -6,6 +6,7 @@ import {TableManager} from "../../../Core/js/table";
 import {modal} from "../../../Core/js/modal";
 import {ObjectsList} from "../../../Core/js/ObjectsList/objectsList";
 import {t as TCommonBase} from "../../../CommonBase/i18n.xml";
+import {TaskNotification} from "../../../Notifications/js/TaskNotification";
 
 export class index {
     constructor(page, data) {
@@ -13,7 +14,11 @@ export class index {
         let datasource = new DatasourceAjax('User', 'getTable', ['User', 'User']);
         let objectsList = new ObjectsList(datasource);
         objectsList.icon = 'icon-user';
-        objectsList.columns = [{name: "Imie", content: row => row.name, sortName: 'name'},{name: "Nazwisko", content: row => row.surname, sortName: 'surname'},{name: "Email", content: row => row.mail, sortName: 'mail'}];
+        objectsList.columns = [{name: "Imie", content: row => row.name, sortName: 'name'}, {
+            name: "Nazwisko",
+            content: row => row.surname,
+            sortName: 'surname'
+        }, {name: "Email", content: row => row.mail, sortName: 'mail'}];
         objectsList.generateActions = (rows, mode) => {
             let ret = [];
             if (rows.length == 1) {
@@ -46,7 +51,9 @@ export class add {
         let form = new FormManager(this.page.querySelector('form'));
 
         form.submit = async data => {
-            await Ajax.User.insert(data);
+            await TaskNotification.Create(async () => {
+                await Ajax.User.insert(data);
+            }, "Zapisywanie", "Zapisano");
             pageManager.goto('/User');
         }
     }
@@ -61,7 +68,9 @@ export class edit {
         form.load(this.data.user);
 
         form.submit = async data => {
-            await Ajax.User.update(data);
+            await TaskNotification.Create(async () => {
+                await Ajax.User.update(data);
+            }, "Zapisywanie", "Zapisano");
             pageManager.goto('/User');
         }
     }
