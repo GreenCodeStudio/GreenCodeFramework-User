@@ -22,6 +22,7 @@ module.exports = class extends BaseSeleniumTest {
         await this.driver.findElement(By.css('form [name="mail"]')).sendKeys('test@test.example');
         await this.driver.findElement(By.css('form [name="password"]')).sendKeys('pass@!12');
         await this.driver.findElement(By.css('form [name="password2"]')).sendKeys('pass@!12');
+        await this.asleep(200);
         await this.takeScreenshot('user-add-filled', true)
         await this.driver.findElement(By.css('form [name="password2"]')).sendKeys(Key.RETURN);
         await this.asleep(1000);
