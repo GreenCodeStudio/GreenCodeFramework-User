@@ -11,8 +11,8 @@ module.exports = class extends BaseSeleniumTest {
         await this.driver.findElement(By.css('a[href="/User"]')).sendKeys(Key.RETURN);
         await this.asleep(1000);
         await this.takeScreenshot('user-before')
-        expect(this.driver.findElement(By.css('.UsersList')).getText()).to.not.contain('TestName')
-        expect(this.driver.findElement(By.css('.UsersList')).getText()).to.not.contain('test@test.example')
+        expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.not.contain('TestName')
+        expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.not.contain('test@test.example')
         await this.driver.findElement(By.css('a[href="/User/add"]')).sendKeys(Key.RETURN);
         await this.asleep(1000);
 
@@ -26,7 +26,7 @@ module.exports = class extends BaseSeleniumTest {
         await this.driver.findElement(By.css('form [name="password2"]')).sendKeys(Key.RETURN);
         await this.asleep(1000);
         await this.takeScreenshot('user-afterAdd')
-        expect(this.driver.findElement(By.css('.UsersList')).getText()).to.contain('TestName')
-        expect(this.driver.findElement(By.css('.UsersList')).getText()).to.contain('test@test.example')
+        expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.contain('TestName')
+        expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.contain('test@test.example')
     }
 }
