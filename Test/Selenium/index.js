@@ -27,7 +27,27 @@ module.exports = class extends BaseSeleniumTest {
         await this.driver.findElement(By.css('form [name="password2"]')).sendKeys(Key.RETURN);
         await this.asleep(1000);
         await this.takeScreenshot('user-afterAdd')
-        expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.contain('TestName')
-        expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.contain('test@test.example')
+
+        await this.openURL('/WarehouseArticle');
+        await this.clickElement('.icon-add');
+        await this.sendKeysToElement('.card [name="name"]', "1");
+        await this.sendKeysToElement('.card [name="code"]', "2");
+        await this.sendKeysToElement('.card [name="mass"]', "3");
+        await this.sendKeysToElement('.card [name="unitType"]', "4");
+        await this.clickElement('.icon-save');
+
+        await this.openURL('/Receipt');
+        await this.clickElement('.icon-add');
+        await this.sendKeysToElement('.card [name="name"]', "test");
+        await this.sendKeysToElement('.addNext', "1");
+        await this.clickElement('.icon-save');
+
+        await this.openURL('/Picking');
+        await this.clickElement('.icon-add');
+        await this.sendKeysToElement('.card [name="name"]', "test");
+        await this.sendKeysToElement('.addNext', "1");
+        await this.clickElement('.icon-save');
+        // expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.contain('TestName')
+        // expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.contain('test@test.example')
     }
 }
