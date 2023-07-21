@@ -35,18 +35,24 @@ module.exports = class extends BaseSeleniumTest {
         await this.sendKeysToElement('.card [name="mass"]', "3");
         await this.sendKeysToElement('.card [name="unitType"]', "4");
         await this.clickElement('.icon-save');
+        await this.asleep(1000);
+        await this.takeScreenshot('WarehouseArticle');
 
         await this.openURL('/Receipt');
         await this.clickElement('.icon-add');
         await this.sendKeysToElement('.card [name="name"]', "test");
         await this.sendKeysToElement('.addNext', "1");
         await this.clickElement('.icon-save');
+        await this.asleep(1000);
+        await this.takeScreenshot('Receipt');
 
         await this.openURL('/Picking');
         await this.clickElement('.icon-add');
         await this.sendKeysToElement('.card [name="name"]', "test");
         await this.sendKeysToElement('.addNext', "1");
         await this.clickElement('.icon-save');
+        await this.asleep(1000);
+        await this.takeScreenshot('Picking');
         // expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.contain('TestName')
         // expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.contain('test@test.example')
     }
