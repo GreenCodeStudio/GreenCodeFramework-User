@@ -61,6 +61,8 @@ module.exports = class extends BaseSeleniumTest {
         await this.clickElement('.icon-edit');
         await this.sendKeysToElement('.addNext', "2");
         await this.clickElement('button.button[value="confirm"]');
+        await this.asleep(1000);
+        await this.takeScreenshot('Receipt-filled')
         // expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.contain('TestName')
         // expect(await this.driver.findElement(By.css('.UsersList')).getText()).to.contain('test@test.example')
     }
