@@ -11,6 +11,10 @@ module.exports = class extends BaseSeleniumTest {
         await this.navigateToUserPage();
         await this.addNewUser('TestName', 'TestSurname', 'test@test.example', 'pass@!12');
 
+        await this.navigateToPalletSpace();
+        await this.addPalletSpace("1", "2", "3", "4", "added1");
+        await this.addPalletSpace("5", "6", "7", "8", "added2");
+
         await this.navigateToWarehouseArticle();
         await this.addWarehouseArticle("1", "2", "3", "4", "added1");
         await this.addWarehouseArticle("5", "6", "7", "8", "added2");
@@ -50,6 +54,21 @@ module.exports = class extends BaseSeleniumTest {
         await this.driver.findElement(By.css('form [name="password2"]')).sendKeys(Key.RETURN);
         await this.asleep(1000);
         await this.takeScreenshot('user-afterAdd');
+    }
+
+    async navigateToPalletSpace() {
+        await this.openURL('/PalletSpace');
+    }
+
+    async addPalletSpace(code, section, place, maximum_mass, screenshotName=null) {
+        await this.clickElement('.icon-add');
+        await this.sendKeysToElement('input[name="code"]', code);
+        await this.sendKeysToElement('input[name="section"]', section);
+        await this.sendKeysToElement('input[name="place"]', place);
+        await this.sendKeysToElement('input[name="maximum_mass"]', maximum_mass);
+        await this.clickElement('.icon-save');
+        await this.asleep(1000);
+        await this.takeScreenshot('PalletSpace-'+screenshotName, !!screenshotName);
     }
 
     async navigateToWarehouseArticle() {
