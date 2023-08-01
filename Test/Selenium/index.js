@@ -12,16 +12,16 @@ module.exports = class extends BaseSeleniumTest {
         await this.addNewUser('TestName', 'TestSurname', 'test@test.example', 'pass@!12');
 
         await this.navigateToWarehouseArticle();
-        await this.addWarehouseArticle("1", "2", "3", "4");
-        await this.addWarehouseArticle("5", "6", "7", "8");
+        await this.addWarehouseArticle("1", "2", "3", "4", "added1");
+        await this.addWarehouseArticle("5", "6", "7", "8", "added2");
 
         await this.navigateToReceipt();
-        await this.addReceipt("test", "1");
-        await this.addReceipt("test2", "2");
+        await this.addReceipt("test", "1", "added1");
+        await this.addReceipt("test2", "2", "added2");
 
         await this.navigateToPicking();
-        await this.addPicking("test", "2");
-        await this.addPicking("test2", "6");
+        await this.addPicking("test", "2", "added1");
+        await this.addPicking("test2", "6", "added2");
 
         await this.navigateToReceipt();
         await this.editReceipt("2");
@@ -56,7 +56,7 @@ module.exports = class extends BaseSeleniumTest {
         await this.openURL('/WarehouseArticle');
     }
 
-    async addWarehouseArticle(name, code, mass, unitType) {
+    async addWarehouseArticle(name, code, mass, unitType, screenshotName=null) {
         await this.clickElement('.icon-add');
         await this.sendKeysToElement('.card [name="name"]', name);
         await this.sendKeysToElement('.card [name="code"]', code);
@@ -64,33 +64,33 @@ module.exports = class extends BaseSeleniumTest {
         await this.sendKeysToElement('.card [name="unitType"]', unitType);
         await this.clickElement('.icon-save');
         await this.asleep(1000);
-        await this.takeScreenshot('WarehouseArticle');
+        await this.takeScreenshot('WarehouseArticle-'+screenshotName, !!screenshotName);
     }
 
     async navigateToReceipt() {
         await this.openURL('/Receipt');
     }
 
-    async addReceipt(name, addNextValue) {
+    async addReceipt(name, addNextValue,screenshotName=null) {
         await this.clickElement('.icon-add');
         await this.sendKeysToElement('.card [name="name"]', name);
         await this.sendKeysToElement('.addNext', addNextValue);
         await this.clickElement('.icon-save');
         await this.asleep(1000);
-        await this.takeScreenshot('Receipt');
+        await this.takeScreenshot('Receipt-'+screenshotName, !!screenshotName);
     }
 
     async navigateToPicking() {
         await this.openURL('/Picking');
     }
 
-    async addPicking(name, addNextValue) {
+    async addPicking(name, addNextValue, screenshotName=null) {
         await this.clickElement('.icon-add');
         await this.sendKeysToElement('.card [name="name"]', name);
         await this.sendKeysToElement('.addNext', addNextValue);
         await this.clickElement('.icon-save');
         await this.asleep(1000);
-        await this.takeScreenshot('Picking');
+        await this.takeScreenshot('Picking-'+screenshotName, !!screenshotName);
     }
 
     async editReceipt(addNextValue) {
