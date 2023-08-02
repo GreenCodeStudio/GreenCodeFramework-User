@@ -29,6 +29,9 @@ module.exports = class extends BaseSeleniumTest {
 
         await this.navigateToReceipt();
         await this.editReceipt("2");
+
+        await this.navigateToPicking();
+        await this.editPicking("2");
     }
 
     async navigateToUserPage() {
@@ -112,11 +115,47 @@ module.exports = class extends BaseSeleniumTest {
         await this.takeScreenshot('Picking-'+screenshotName, !!screenshotName);
     }
 
-    async editReceipt(addNextValue) {
+    async editReceipt(addNextValue, screenshotName) {
         await this.clickElement('.icon-edit');
         await this.sendKeysToElement('.addNext', addNextValue);
+        await this.driver.actions().sendKeys(Key.ENTER).perform();
+        await this.asleep(1000);
+
+        const amountInput = await this.driver.findElement(By.css('.amountInput'));
+        let currentValue = parseInt(await amountInput.getAttribute('value'));
+        currentValue++;
+        await amountInput.clear();
+        await amountInput.sendKeys(currentValue.toString());
+
+        const dropdown = await this.driver.findElement(By.css('select'));
+        const availableOption = await dropdown.findElement(By.css('option:not([style="display: none"])'));
+        await availableOption.click();
+
         await this.clickElement('button.button[value="confirm"]');
         await this.asleep(1000);
-        await this.takeScreenshot('Receipt-save');
+        await this.takeScreenshot('Receipt-save-'+screenshotName, !!screenshotName);
+    }
+
+    async editPicking(addNextValue,screenshotName) {
+        await this.clickElement('.icon-edit');
+        await this.sendKeysToElement('.addNext', addNextValue);
+        await this.driver.actions().sendKeys(Key.ENTER).perform();
+
+        await this.sendKeysToElement('input[name="articles[1][1][documentNumber]"]', '1');
+        await this.sendKeysToElement('input[name="articles[1][1][documentPosition]"]', '1');
+        await this.sendKeysToElement('input[name="articles[1][1][palleteNumber]"]', '1');
+        await this.sendKeysToElement('input[name="articles[1][1][order]"]', '1');
+
+        const amountInput = await this.driver.findElement(By.css('input[name="articles[1][1][amount]"]'));
+        await amountInput.clear();
+        await amountInput.sendKeys('1');
+
+        const amountElement = await this.driver.findElement(By.css('input[name="articles[1][1][1][null][amount]"]'));
+        await amountElement.clear();
+        await amountElement.sendKeys('1');
+
+        await this.clickElement('button.button[value="confirm"]');
+        await this.asleep(1000);
+        await this.takeScreenshot('Picking-save-'+screenshotName, !!screenshotName);
     }
 }
