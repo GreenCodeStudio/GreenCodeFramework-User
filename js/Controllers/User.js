@@ -11,14 +11,15 @@ import {TaskNotification} from "../../../Notifications/js/TaskNotification";
 export class index {
     constructor(page, data) {
         const container = page.querySelector('.UsersList');
-        let datasource = new DatasourceAjax('User', 'getTable', ['User', 'User']);
+        let datasource = new DatasourceAjax('User', 'getTable', ['User', 'User'],null, 'updateMultiple');
         let objectsList = new ObjectsList(datasource);
+        objectsList.allowTableEdit = true;
         objectsList.icon = 'icon-user';
-        objectsList.columns = [{name: "Imie", content: row => row.name, sortName: 'name'}, {
+        objectsList.columns = [{name: "Imie", content: row => row.name,dataName:'name', sortName: 'name'}, {
             name: "Nazwisko",
-            content: row => row.surname,
+            content: row => row.surname,dataName:'surname',
             sortName: 'surname'
-        }, {name: "Email", content: row => row.mail, sortName: 'mail'}];
+        }, {name: "Email", content: row => row.mail,dataName:'mail', sortName: 'mail'}];
         objectsList.generateActions = (rows, mode) => {
             let ret = [];
             if (rows.length == 1) {
@@ -92,5 +93,10 @@ export class myAccount {
             form.reset();
 
         }
+        page.querySelectorAll('.userPreferences [name]').forEach(x => {
+            x.onchange = async () => {
+                await Ajax.User.updateCurrentUserPreference(x.name, x.value);
+            }
+        })
     }
 }

@@ -27,16 +27,32 @@ class User extends PageAjaxController
         $user->update($data->id, $data);
     }
 
+    public function updateMultiple(array $data)
+    {
+        $this->will('user', 'edit');
+        $user = new \User\User();
+        foreach ($data as $row) {
+            $user->update($row->id, $row->data);
+        }
+    }
+
     public function insert($data)
     {
         $this->will('user', 'add');
         $user = new \User\User();
         $user->insert($data);
     }
-    public function  changeCurrentUserPassword(string $password, string $password2){
-        if($password!==$password2)
+
+    public function changeCurrentUserPassword(string $password, string $password2)
+    {
+        if ($password !== $password2)
             throw new \InvalidArgumentException("Passwords not identical");
 
         (new \User\User())->changePassword(Authorization::getUserId(), $password);
+    }
+
+    public function updateCurrentUserPreference(string $name, string $value)
+    {
+        (new \User\UserPreferences())->updatePreference(Authorization::getUserId(), $name, $value);
     }
 }

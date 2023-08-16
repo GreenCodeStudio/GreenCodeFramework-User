@@ -36,7 +36,9 @@ class User extends BussinesLogic
     {
         $filtered = $this->filterData($data);
         $this->defaultDB->update($id, $filtered);
-        $this->savePermissions($data->permission, $id);
+        if (isset($data->permission)) {
+            $this->savePermissions($data->permission, $id);
+        }
         if (!empty($data->password) && $data->password === $data->password2) {
             $this->changePassword($id, $data->password);
         }
@@ -80,13 +82,15 @@ class User extends BussinesLogic
         }
         return $id;
     }
-    public function getAll(){
+
+    public function getAll()
+    {
         return $this->defaultDB->getAll();
     }
 
     public function addPermission(int $idUser, string $group, string $name)
     {
-        $this->defaultDB->insertPermission(['id_user'=>$idUser, 'group'=>$group, 'name'=>$name]);
+        $this->defaultDB->insertPermission(['id_user' => $idUser, 'group' => $group, 'name' => $name]);
     }
 
     public function addAllPermissions(int $idUser)

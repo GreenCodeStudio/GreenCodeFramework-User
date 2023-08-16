@@ -60,6 +60,7 @@ class User extends PageStandardController
     {
         $this->pushBreadcrumb(['title' => 'Moje konto', 'url' => '/User/myAccount']);
         $user = ( new \User\User())->getById(Authorization::getUserId());
-        $this->addView('User', 'myAccount', ['user' => $user]);
+        $preferences=(new \User\UserPreferences())->getByUserId(Authorization::getUserId());
+        $this->addView('User', 'myAccount', ['user' => $user, 'preferences'=>$preferences]);
     }
 }
