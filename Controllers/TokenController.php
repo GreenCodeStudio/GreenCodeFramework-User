@@ -6,7 +6,7 @@ use Authorization\Permissions;
 use Common\PageStandardController;
 use Core\Exceptions\NotFoundException;
 
-class Token extends PageStandardController
+class TokenController extends PageStandardController
 {
 
     function index()

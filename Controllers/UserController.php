@@ -7,7 +7,7 @@ use Authorization\Permissions;
 use Common\PageStandardController;
 use Core\Exceptions\NotFoundException;
 
-class User extends PageStandardController
+class UserController extends PageStandardController
 {
 
     function index()
@@ -28,7 +28,7 @@ class User extends PageStandardController
     {
         $this->will('user', 'edit');
         $permissionsStructure = Permissions::readStructure();
-        $this->addView('User', 'edit', ['type' => 'edit', 'permissionsStructure' => $permissionsStructure]);
+        $this->addView('User', 'UserEdit', ['type' => 'edit', 'permissionsStructure' => $permissionsStructure]);
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
         $this->pushBreadcrumb(['title' => 'Edycja', 'url' => '/User/edit/'.$id]);
     }
@@ -51,7 +51,7 @@ class User extends PageStandardController
     {
         $this->will('user', 'add');
         $permissionsStructure = Permissions::readStructure();
-        $this->addView('User', 'edit', ['type' => 'add', 'permissionsStructure' => $permissionsStructure]);
+        $this->addView('User', 'UserEdit', ['type' => 'add', 'permissionsStructure' => $permissionsStructure]);
         $this->pushBreadcrumb(['title' => 'Użytkownicy', 'url' => '/User']);
         $this->pushBreadcrumb(['title' => 'Dodaj', 'url' => '/User/add']);
     }

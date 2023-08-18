@@ -1,0 +1,17 @@
+<section class="card" data-width="6">
+    <header>
+        <h1>Uprawnienia</h1>
+    </header>
+    <:foreach collection=data.permissionsStructure item=permGroup>
+        <h2>{{permGroup.title}}</h2>
+        <:foreach collection=permGroup.children item=perm>
+            <label>
+                <span>{{perm.title}}</span>
+                <input type="checkbox"
+                       name=("permission[":permGroup.name:"][":perm.name:"]")/>
+            </label>
+
+        </:foreach>
+    </:foreach>
+</section>
+

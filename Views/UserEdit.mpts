@@ -1,0 +1,39 @@
+<form class="dataForm">
+    <div class="topBarButtons">
+        <a href="/User/" class="button" type="button"><span class="icon-cancel"></span>Anuluj</a>
+        <button class="button"><span class="icon-save"></span>Zapisz</button>
+    </div>
+    <input name="id" type="hidden"/>
+    <section class="card" data-width="6">
+        <header>
+            <h1>Podstawowe dane</h1>
+        </header>
+        <label>
+            <span>Imie</span>
+            <input name="name"/>
+        </label>
+        <label>
+            <span>Nazwisko</span>
+            <input name="surname"/>
+        </label>
+        <label>
+            <span>Email</span>
+            <input name="mail"/>
+        </label>
+    </section>
+    <section class="card" data-width="6">
+        <header>
+            <h1>Zmiana hasła</h1>
+        </header>
+        <label>
+            <span>Hasło</span>
+            <input name="password" type="password" autocomplete="new-password"/>
+        </label>
+        <label>
+            <span>Powtórz</span>
+            <input name="password2" type="password" autocomplete="new-password"/>
+        </label>
+    </section>
+<<getView("User", "PermissionsEdit", data)>>
+
+</form>
