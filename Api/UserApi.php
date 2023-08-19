@@ -8,7 +8,7 @@ use Core\ApiController;
 use Core\Exceptions\NotFoundException;
 use MKrawczyk\FunQuery\FunQuery;
 
-class User extends ApiController
+class UserApi extends ApiController
 {
     /**
      * @ApiEndpoint('type'=>'get','url'=>'user','tags'=>['User'], 'description'=>'Get basic information about all users',
