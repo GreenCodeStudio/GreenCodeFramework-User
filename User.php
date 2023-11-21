@@ -96,7 +96,6 @@ class User extends BussinesLogic
     public function addAllPermissions(int $idUser)
     {
         $permissionsStructure = Permissions::readStructure();
-        dump($permissionsStructure);
         $prepared = [];
         foreach ($permissionsStructure as $group) {
             foreach ($group->children as $value) {
