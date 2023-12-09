@@ -2,6 +2,7 @@
 
 namespace User;
 
+use Authorization\Authorization;
 use MKrawczyk\FunQuery\FunQuery;
 use stdClass;
 use User\Repository\UserPreferencesRepository;
@@ -65,5 +66,6 @@ class UserPreferences
     public function updatePreference(int $userId, string $name, string $value)
     {
         (new UserPreferencesRepository())->updatePreference($userId, $name, $value);
+        (new \Authorization\Authorization())->refreshUserData();
     }
 }

@@ -45,6 +45,10 @@ class User extends PageAjaxController
 
     public function changeCurrentUserPassword(string $password, string $password2)
     {
+        if (strlen($password) <6)
+            throw new \InvalidArgumentException("Passwords too short");
+        if (trim($password) !== $password)
+            throw new \InvalidArgumentException("Whitespaces");
         if ($password !== $password2)
             throw new \InvalidArgumentException("Passwords not identical");
 
