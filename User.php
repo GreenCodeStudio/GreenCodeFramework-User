@@ -43,6 +43,7 @@ class User extends BussinesLogic
             $this->changePassword($id, $data->password);
         }
         Sender::sendToUsers(["User", "User", "Update", $id]);
+        (new \Authorization\Authorization())->refreshUserData();
     }
 
     protected function filterData($data)

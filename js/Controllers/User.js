@@ -96,7 +96,15 @@ export class myAccount {
         page.querySelectorAll('.userPreferences [name]').forEach(x => {
             x.onchange = async () => {
                 await Ajax.User.updateCurrentUserPreference(x.name, x.value);
+                this.onUpdatePreference(x.name, x.value);
             }
         })
+    }
+    onUpdatePreference(name, value){
+        switch (name){
+            case "CommonBase.layout":
+                document.documentElement.dataset.layout = value;
+                break;
+        }
     }
 }
