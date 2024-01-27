@@ -1,5 +1,5 @@
 <div class="topBarButtons">
-    <a href="/User/add" class="button" title="Dodaj"><span class="icon-add"></span>Dodaj</a>
+    <a href="/User/add" class="button action-add" title="Dodaj"><span class="icon-add"></span>Dodaj</a>
 </div>
 <section class="card page-User-list" data-width="6">
     <header>
