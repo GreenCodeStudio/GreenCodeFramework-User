@@ -27,14 +27,16 @@ export class index {
                     name: TCommonBase("edit"),
                     icon: 'icon-edit',
                     href: "/User/edit/" + rows[0].id,
-                    main: true
+                    main: true,
+                    action: 'edit'
                 });
             }
             if (mode != 'row') {
                 ret.push({
                     name: TCommonBase("editInNewTab"), icon: 'icon-edit', showInTable: false, command() {
                         rows.forEach(x => window.open("/User/edit/" + x.id))
-                    }
+                    },
+                    action: 'edit'
                 });
             }
             return ret;
