@@ -13,7 +13,7 @@
     <action>
         <link>/User/add</link>
         <title>Dodaj użytkownika</title>
-        <keywords>dodaj dodawanie nowy użytkownika użytkonik</keywords>
+        <keywords>dodaj dodawanie nowy użytkownika użytkownik</keywords>
         <permission>
             <group>user</group>
             <name>add</name>
