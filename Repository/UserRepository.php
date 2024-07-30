@@ -32,6 +32,11 @@ class UserRepository extends Repository
             $select = "";
         return DB::get("SELECT id,mail,name,surname $select FROM user WHERE mail = ? $archivedSQL", [$username])[0] ?? null;
     }
+    public function getByUsernameForPasswordReset(string $username)
+    {
+        $archivedSQL = $this->getArchiveModeSQL();
+        return DB::get("SELECT id,mail,reset_password_code, reset_password_expire FROM user WHERE mail = ? $archivedSQL", [$username])[0] ?? null;
+    }
 
     protected function getArchiveModeSQL()
     {
@@ -103,5 +108,10 @@ class UserRepository extends Repository
     public function insertPermission(array $array)
     {
         DB::insert('user_permission', $array);
+    }
+
+    public function setResetPasswordCode($id, int $code, \DateTime $expiration)
+    {
+        DB::update('user', ['reset_password_code' => $code, 'reset_password_expire' => $expiration->format('Y-m-d H:i:s')], $id);
     }
 }
