@@ -1,6 +1,6 @@
 const BaseSeleniumTest = require("../../../E2eTests/Test/Selenium/baseSeleniumTest");
 const { Key, By } = require("selenium-webdriver");
-const { expect } = await import('chai');
+
 
 module.exports = class UserTest extends BaseSeleniumTest {
     constructor(driver) {
@@ -13,6 +13,7 @@ module.exports = class UserTest extends BaseSeleniumTest {
     }
 
     async navigateToUserPage() {
+        const { expect } = await import('chai');
         await this.driver.findElement(By.css('a[href="/User"]')).sendKeys(Key.RETURN);
         await this.asleep(1000);
         await this.takeScreenshot('user-before');
