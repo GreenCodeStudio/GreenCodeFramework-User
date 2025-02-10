@@ -1,6 +1,6 @@
 const BaseSeleniumTest = require("../../../E2eTests/Test/Selenium/baseSeleniumTest");
 const { Key, By } = require("selenium-webdriver");
-const { expect } = require('chai');
+const { expect } = await import('chai');
 
 module.exports = class UserTest extends BaseSeleniumTest {
     constructor(driver) {
