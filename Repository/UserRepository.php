@@ -104,4 +104,9 @@ class UserRepository extends Repository
     {
         DB::insert('user_permission', $array);
     }
+
+    public function getIdsByPermission(string $group, string $name)
+    {
+        return DB::funquery("SELECT u.id FROM user u JOIN user_permission up ON u.id = up.id_user WHERE up.group = ? AND up.name = ?", [$group, $name])->map(fn($x)=>$x->id);
+    }
 }
