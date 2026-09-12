@@ -68,14 +68,20 @@ export class edit {
         this.data = data;
 
         let form = new FormManager(this.page.querySelector('form'));
+        this.form = form;
         form.load(this.data.user);
+
 
         form.submit = async data => {
             await TaskNotification.Create(async () => {
                 await Ajax.User.update(data);
             }, "Zapisywanie", "Zapisano");
+            form.markAsSaved();
             pageManager.goto('/User');
         }
+    }
+    canQuit(){
+        return this.form.canQuit()
     }
 }
 
