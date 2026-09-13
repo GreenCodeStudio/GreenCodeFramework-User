@@ -22,9 +22,9 @@ class User extends AbstractController
     }
     function addAdmin(string $name, string $surname, string $mail, string $password)
     {
-        $id=$this->add($name,$surname,$mail,$password);
-        $this->addAllPermissions($id);
-        return $id;
+        $user=$this->add($name,$surname,$mail,$password);
+        $this->addAllPermissions($user->id);
+        return $user;
     }
 
     function get()
