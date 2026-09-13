@@ -20,6 +20,12 @@ class User extends AbstractController
         $id = $user->insert($data);
         return $user->getById($id);
     }
+    function addAdmin(string $name, string $surname, string $mail, string $password)
+    {
+        $id=$this->add($name,$surname,$mail,$password);
+        $this->addAllPermissions($id);
+        return $id;
+    }
 
     function get()
     {
