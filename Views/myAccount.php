@@ -20,9 +20,10 @@
         <h1>Preferencje</h1>
     </header>
     <div class="form">
-    <?php foreach ($data['preferences'] as $preference) { ?>
+    <?php foreach ($data['preferences'] as $preference) {
+        ?>
         <label>
-            <span><?= $preference->name ?></span>
+            <span><?= ($preference->title??null)?t($preference->title):$preference->name ?></span>
             <?php if (!empty($preference->select)) {
                 ?>
                 <select name="<?=$preference->name?>">
@@ -32,6 +33,9 @@
                 </select>
                 <?php
             } else {
+                ?>
+                <input name="<?=$preference->name?>" value="<?= $preference->value??$preference->default ?>" type="<?= $preference->type=='color' ? 'color' : 'text' ?>">
+                <?php
             } ?>
         </label>
     <?php } ?>
