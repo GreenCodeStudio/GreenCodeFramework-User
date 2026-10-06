@@ -105,4 +105,9 @@ class User extends BussinesLogic
         }
         $this->defaultDB->savePermissions($prepared, $idUser);
     }
+
+    public function getAllSummary()
+    {
+        return $this->defaultDB->getAllSummary();
+    }
 }

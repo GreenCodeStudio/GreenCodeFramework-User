@@ -119,4 +119,9 @@ class UserRepository extends Repository
     {
         DB::update('user', ['reset_password_code' => $code, 'reset_password_expire' => $expiration->format('Y-m-d H:i:s')], $id);
     }
+
+    public function getAllSummary()
+    {
+        return DB::get("SELECT id, name, surname from user");
+    }
 }
