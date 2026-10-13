@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
     <element>
+        <order>1000</order>
         <permission>
             <group>user</group>
             <name>show</name>
         </permission>
         <title>Użytkownicy</title>
+        <icon>icon-user</icon>
         <menu>
             <element>
                 <link>/User</link>
